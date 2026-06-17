@@ -1,0 +1,37 @@
+#Bối cảnh:"Tôi điều hành chuỗi cửa hàng thực phẩm. Tôi chạy nhiều campaign (chiến dịch) marketing nhưng không biết: khách nào sẽ phản hồi, nhóm khách nào giá trị nhất (RFM), và campaign nào thực sự hiệu quả (không chỉ correlation)."
+#Quy trình:
+#Bước 1:  EDA + SQL — phân khúc khách theo RFM
+#Bước 2: Cleaning — Income missing (MAR/MCAR?),  Year_Birth outliers, Dt_Customer format
+#Bước 3:   Feature Engineering — Age, Customer_Tenure, Total_Spend, multicollinearity check
+#Bước 4:   Model dự báo Response + Dashboard
+#Bước 5:   Causal Inference — Campaign nào thật sự  tăng response (không chỉ tương quan)
+
+
+#BƯỚC 1:IMPORT VÀO SQL
+#CREATE DATABASE marketing_db;
+#USE marketing_db; 
+#sau đó import ( nhớ bấm dấu xoay sau khi chạy)
+
+#Bước 1 — EDA + SQL. 
+#TƯ DUY:
+##Nhìn vào danh sách cột — target của bài toán "khách nào sẽ phản hồi campaign" là cột nào?
+#->Target ( biến mục tiêu): Response ( phản hồi) (0/1)
+##Và 2 cột Z_CostContact, Z_Revenue — bạn nghĩ chúng có giá trị gì khác nhau giữa các dòng không? (Gợi ý: tên có chữ "Z_" thường là cột hằng số trong dataset gốc) 
+#->Z_CostContact, Z_Revenue: hằng số → vô giá trị → bỏ
+#Giờ chạy SQL kiểm tra thực tế — confirm giả thuyết của bạn:
+SELECT 
+    COUNT(DISTINCT Z_CostContact) as unique_cost,
+    COUNT(DISTINCT Z_Revenue) as unique_revenue,
+    MIN(Income) as min_income,
+    MAX(Income) as max_income,
+    COUNT(*) - COUNT(Income) as missing_income
+FROM ml_project1_data;
+#=>KQ:
+#Z_CostContact: 1 giá trị duy nhất → hằng số, bỏ
+#Z_Revenue: 1 giá trị duy nhất → hằng số, bỏ
+#Income: 1730 → 666,666 → có outlier khủng
+#Missing Income: 0 → theo SQL không thiếu
+#KTRA LẠI ĐỂ CHẮC CHẮN XEM CÓ NULL K HAY BỊ NULL IMORT VÀO = 0
+SELECT COUNT(*) FROM ml_project1_data WHERE Income = 0;
+SELECT COUNT(*) FROM ml_project1_data WHERE Income IS NULL;
+#-> KQ = 0 => kẾT LUẬN chắc chắn k có NULL

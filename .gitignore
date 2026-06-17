@@ -1,0 +1,16 @@
+# Bỏ qua các file checkpoint của Jupyter Notebook
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Bỏ qua các file biên dịch Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Bỏ qua file rác của hệ điều hành
+.DS_Store
+Thumbs.db
+
+# Bỏ qua file chứa mật khẩu hoặc cấu hình nhạy cảm
+.env
+config.json
