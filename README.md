@@ -68,13 +68,12 @@ Chiến dịch ghi nhận tỷ lệ phản hồi tích cực đạt $15.05\%$ ($
 
 Chấm dứt hoàn toàn việc spam tin nhắn/email tiếp thị đại trà. Hệ thống Backend cần thiết lập cấu trúc truy vấn lọc cứng trước khi phân phối Campaign, chỉ quét các Account thỏa mãn điều kiện biên phân vị toán học:
 
-$$
-\text{Target Audience Filter} =
-\begin{cases}
-\text{Income} \ge 55,000 \\
-\text{Customer\_Tenure} \ge 350 \text{ days}
-\end{cases}
-$$
+```text
+Target Audience Filter
+
+Income >= 55,000
+Customer Tenure >= 350 days
+```
 
 Giải pháp này cắt giảm ngay lập tức hơn $70\%$ chi phí vận hành quảng cáo rác, tập trung chính xác nguồn lực vào nhóm khách hàng VIP có sức mua gấp đôi hệ thống.
 
