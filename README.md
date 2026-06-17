@@ -64,14 +64,14 @@ Chiến dịch ghi nhận tỷ lệ phản hồi tích cực đạt $15.05\%$ ($
 
 * **Biến số Tuổi tác:** Không ghi nhận sự khác biệt có ý nghĩa thống kê ($\mu \approx 54.5 \text{ vs } 55.2$).
 
-**🚀 Giải pháp Thực thi Kỹ thuật (Targeting Query Engine):**
+** Giải pháp Thực thi Kỹ thuật (Targeting Query Engine):**
 
 Chấm dứt hoàn toàn việc spam tin nhắn/email tiếp thị đại trà. Hệ thống Backend cần thiết lập cấu trúc truy vấn lọc cứng trước khi phân phối Campaign, chỉ quét các Account thỏa mãn điều kiện biên phân vị toán học:
 
 $$
 \text{Target Audience Filter} =
 \begin{cases}
-\text{Income} \ge \$55,000 \\
+\text{Income} \ge 55,000 \\
 \text{Customer\_Tenure} \ge 350 \text{ days}
 \end{cases}
 $$
